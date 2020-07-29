@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Blog Posts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+			
+		</style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>REINFORCEMENT MACHINE LEARNING</h2>
+						</div>
+					</section>
+
+					<section>
+						<div class="container">
+							<h2 class="sub-headings ml-3 text-secondary">Definition of Reinforcement Machine-Learning</h2>
+							<br>
+							<div class="article ml-3">
+									
+								<p>
+									<i>
+                                        "Reinforcement Learning is a machine learning technique in which, there is a software agent taht makes observations and takes actions within an enviornment and in return it recieves rewards."
+                                    </i>
+								</p>
+								
+								<p>
+									<i>
+                                        "It's objective is to learn to act in a way that will maximize its expected long-term rewards. <br>You can think of positive reward as a pleasure, and negative reward as pain. <br>The agent acts in the enviornment and learns by trail and error to maximize its pleasure and minimize it's pain."
+                                    </i>
+                                </p>	
+                                <p>
+                                    Reinforcement Learning technique is widely used in game-play automation, simulation control, self-driving cars and many more areas.
+                                </p>		
+            					<hr>
+                                <h2 class="sub-headings ml-3 text-secondary">EXAMPLES - </h2>   
+                                <ul>
+                                    <li>
+                                        Agent can be the program controlling a walking robot. <br>In this case the enviorment is the real world, the agent observes the enviornment through a set of sensors such as cameras and touch sensors, and its actions consists of sending signals to activate motors. <br>It may be programmed to get positive rewards whenever it  approaches target destination, and a negitive reward whenever it wastes time, or goes in the wrong dorection or falls down.
+                                    </li>
+                                    <li>The agent can be the program playing board game, such as game of GO.</li>
+                                    <li>
+                                        The agent can be the program controlling a video game like pacman. <br>In this case, enviornment is a simulation, the actions are joystick positions, the observations are screenshots and rewards are game points.
+                                    </li>
+                                </ul>
+                                <hr>
+								<!-- <p><a href="#">Next Blog - <b><i>"REINFORCEMENT MACHINE LEARNING"</i></b></a></p> -->
+                                <p><a href="{% url 'blog3' %}">Previous Blog - <b><i>"UNSUPERVISED MACHINE LEARNING"</i></b></a></p>
+                                <hr>
+								<!-- <p>MORE BLOGS - </p> -->
+							</div>
+						</div>
+					</section>
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

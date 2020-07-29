@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Blog Posts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+			
+		</style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>SUPERVISED MACHINE LEARNING</h2>
+						</div>
+					</section>
+
+					<section>
+						<div class="container">
+							<h2 class="sub-headings ml-3 text-secondary">Definition of Supervised Machine-Learning</h2>
+							<br>
+							<div class="article ml-3">
+									
+								<p>
+									<i>
+                                        In Supervised Machine Learning technique, we train the Machine Learning model using data which is well-labeled i.e. some data which is already tagged with correct output. <br>In other words, in supervised learning , the training data we feed to the algorithm includes the desired solutions called labels.
+                                        <br>
+                                        It can be said that, model is learning which takes place in the presence of a supervisor or teacher.
+                                        
+                                    </i>
+								</p>
+								<p><b>OR</b></p>
+								<p>
+									<i>
+                                        A supervised machine learning model learns from labelled data(i.e. data which is already given and have correct output), helps to predict outcomes for unforeseen data. 
+                                        <br>
+                                        It allows to produce output from previous experience.
+                                    </i>
+                                </p>			
+            					<hr>
+                                <h2 class="sub-headings text-secondary">Types of Supervised Machine Learning Techniques</h2>								
+                                <p>There are 2 supervised machine learning strategies - </p>
+								<ol>
+									<li>Regression </li>
+									<li>Classification</li>
+								</ol>
+                                <hr>
+                                <h2 class="sub-headings text-secondary">REGRESSION - </h2>		
+                                <p>Regression technique predicts a single output value learning from training data. This is technique to predict continuous value.Regression works on comtinuous data( continuous data means integers, floating point values ).</p>						                                
+                                Example - 
+                                <br>
+                                <ul>
+                                    <li>To predict house proce based on parameters like locality, size of area, rooms etc.</li>
+                                    <li>Weather Forecasting</li>
+                                    <li>Predicting profit/loss based on expeditures</li>
+                                    <li>Predicting salary of an employee based on it's experience, age, qualification, etc.</li>
+                                    and many more...
+                                </ul>
+                                <hr>
+                                <h2 class="sub-headings text-secondary">Classification - </h2>		
+                                <p>Classification means to group or classify output into a particular class out of different possible classes. Classification works on discrete data.</p>						                               
+                                Example - 
+                                <br>
+                                <ul>
+                                    <li>To classify whether the cancer is begnin or malignant</li>
+                                    <li>To Predict whether the mail is spam or ham</li>
+                                    <li>To predict the species of a given flower</li>
+                                    <li>Predict whether a person is suffering from diabetes or not</li>
+                                    and many more...
+                                </ul>
+                                <hr>
+								<p><a href="{% url 'blog3' %}">Next Blog - <b><i>"UN-SUPERVISED MACHINE LEARNING"</i></b></a></p>
+                                <p><a href="{% url 'blog1' %}">Previous Blog - <b><i>"GETTING STARTED WITH MACHINE LEARNING"</i></b></a></p>
+                                <hr>
+								<!-- <p>MORE BLOGS - </p> -->
+							</div>
+						</div>
+					</section>
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

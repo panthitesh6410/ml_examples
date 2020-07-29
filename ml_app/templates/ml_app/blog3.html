@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Blog Posts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+			
+		</style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>UN-SUPERVISED MACHINE LEARNING</h2>
+						</div>
+					</section>
+
+					<section>
+						<div class="container">
+							<h2 class="sub-headings ml-3 text-secondary">Definition of Un-supervised Machine-Learning</h2>
+							<br>
+							<div class="article ml-3">
+									
+								<p>
+									<i>
+                                        Un-supervised learning is a machine learning technique, where you do not need to supervise the model. Instead, you need to allow the model to work on it's own to discover information.
+                                        <br>
+                                        It mainly deals with unlablled data (i.e. data where final output is not present). </i>
+								</p>
+								
+								<p>
+									<i>
+                                        Un-supervised learning algorithms allows you to perform more complex preocessing tasks compared to supervised learning technique. 
+                                        <br>
+                                        Although, un-supervised learning can be more unpredictable compared to other methods.
+                                        <br>
+                                        <br>
+                                        Un-supervised Machine Learning technique finds all kind of unknown patterns in data.
+                                    </i>
+                                </p>			
+            					<hr>
+                                <h2 class="sub-headings text-secondary">Types of Un-supervised Machine Learning Techniques</h2>								
+                                <p>There are 3 Un-supervised machine learning strategies - </p>
+								<ol>
+                                    <li>Clustering </li>
+									<li>Recommendation Systems</li>
+                                    <li>Dimensionality Reduction</li>
+                                </ol>
+                                <hr>
+                                <h2 class="sub-headings text-secondary">Clustering </h2>		
+                                <p>Clustering mainly deals with finding a pattern or structure in a collection of unrecognized data. <br> Clustering technique process the data and find natural clusters or groups if they exists in data.<p>						                                
+                                Examples - 
+                                <br>
+                                <ul>
+                                    <li>Identifying buying patterns of customers in e-commerce</li>
+                                    <li>Recommending new products to customers in e-commerce </li>
+                                    <li>Credit card fraud detection</li>
+                                    <li>Identifying clusters of customers (like loyal, old, etc)</li>
+                                    and many more...
+                                </ul>
+                                <hr>
+                                <h2 class="sub-headings text-secondary">Recommendation Systems - </h2>		
+                                <p>A Recommender system refers to a system that is capable of predicting the future preference of a set of items for a user, and recommecnd the top items.</p>						                               
+                                Examples - 
+                                <br>
+                                <ul>
+                                    <li>Filpkart product recommendation system</li>
+                                    <li>Amazon product recommendation system</li>
+                                    <li>Netflix movie recommendation system</li>
+                                    and many more...
+                                </ul>
+								<hr>
+								<h2 class="sub-headings text-secondary">Dimensionality Rediction - </h2>		
+                                <p>Dimensionality Reduction refers to techniques that reduce the number of input variables in a dataset. <br>It helps in data compression, and hence storage space. <br>It reduces computation time. <br>It also helps to remove redundant features and data vizualization.</p>						                               
+                                <hr>
+								<p><a href="{% url 'blog4' %}">Next Blog - <b><i>"REINFORCEMENT MACHINE LEARNING"</i></b></a></p>
+                                <p><a href="{% url 'blog2' %}">Previous Blog - <b><i>"SUPERVISED MACHINE LEARNING"</i></b></a></p>
+                                <hr>
+								<!-- <p>MORE BLOGS - </p> -->
+							</div>
+						</div>
+					</section>
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Loan Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+        </style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>LOAN APPROVAL PREDICTION</h2>
+						</div>
+					</section>
+
+                    {% if y_hat == 0 %}
+                        <div class="container alert badge-danger text-center">LOAN NOT APPROVED</div>
+                    {% endif %}
+                    {% if y_hat == 1 %}
+                        <div class="container alert badge-success text-center">LOAN APPROVED</div>
+                    {% endif %}
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							<h2 class="major">FILL DETAILS</h2>
+							<form method="post" action="#">
+                                {% csrf_token %}
+								<div class="form-group ">
+                                    Select Gender : <br>
+                                    <input type="radio" name="gender" value="1" id="male"><label for="male">Male</label>
+                                    <input type="radio" name="gender" value='0' id="female"><label for="female">Female</label>
+                                </div>
+                                <div class="form-group ">
+                                    Marital Status : <br>
+                                    <input type="radio" name="marital_status" value="1" id="married"><label for="married">Married</label>
+                                    <input type="radio" name="marital_status" value='0' id="notmarried"><label for="notmarried">Not Married</label>
+                                </div>
+                                <div class="form-group">
+                                    Number of Dependents : <br>
+                                    <input type="radio" name="dependents" value="0" id="0"><label for="0">Zero</label>
+                                    <input type="radio" name="dependents" value='1' id="1"><label for="1">One</label>
+                                    <input type="radio" name="dependents" value="2" id="2"><label for="2">Two</label>
+                                    <input type="radio" name="dependents" value='3' id="3"><label for="3">More than three</label>
+                                </div>
+                                <div class="form-group ">
+                                    Education : <br>
+                                    <input type="radio" name="education" value="1" id="graduate"><label for="graduate">Graduate</label>
+                                    <input type="radio" name="education" value='0' id="notgraduate"><label for="notgraduate">Not Graduate</label>
+                                </div>
+                                <div class="form-group ">
+                                    Self Employed : <br>
+                                    <input type="radio" name="employed" value="1" id="employed"><label for="employed">Yes</label>
+                                    <input type="radio" name="employed" value='0' id="notemployed"><label for="notemployed">No</label>
+                                </div>
+                                <div class="form-group">
+                                    Applicant's Income : <br>
+                                    <input type="number" name="income" id="income" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    Co-Applicant's Income : <br>
+                                    <input type="number" name="coincome" id="coincome" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    Loan Amount : <br>
+                                    <input type="number" name="loan_amount" id="loan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    Credit History : <br>
+                                    <input type="radio" name="credit_history" value="1" id="yes"><label for="yes">Yes</label>
+                                    <input type="radio" name="credit_history" value='0' id="no"><label for="no">No</label>
+                                </div>
+                                <div class="form-group">
+                                    Property : <br>
+                                    <input type="radio" name="property" id="urban" value="2"><label for="urban">Urban</label>
+                                    <input type="radio" name="property" id="rural" value="0"><label for="rural">Rural</label>
+                                    <input type="radio" name="property" id="semiurban" value="1"><label for="semiurban">Semi-Urban</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="CHECK" style='width:100px;text-align:center;'>
+                                </div>
+                            </form>
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>ML Examples - Covid-19 Prediction</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+    <style>
+        body {
+            font-family: verdana;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="page-wrapper">
+
+        <header id="header" class="alt">
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'index' %}">Feedback</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
+        </nav>
+
+        <section id="banner">
+            <div class="inner">
+                <h2>Covid-19 Prediction</h2>
+            </div>
+        </section>
+
+        {% if y_hat == 0 %}
+            <div class="container alert badge-danger text-center">HIGH CHANCES OF COVID-19 INFECTION</div>
+        {% endif %} 
+        {% if y_hat == 1 %}
+            <div class="container alert badge-success text-center">VERY LOW CHANCES OF COVID-19 INFECTION</div>    
+        {% endif %}
+        
+        <section id="footer">
+            <div class="inner" id="enquiry">
+                <h2 class="major">FILL DETAILS</h2>
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        Do you have Fever : <br>
+                        <input type="radio" name="fever" value="1" id="fever_yes"><label for="fever_yes">Yes</label>
+                        <input type="radio" name="fever" value="0" id="fever_no"><label for="fever_no">No</label>
+                    </div>
+                    <div class="form-group">
+                        Do you feel tiredness : <br>
+                        <input type="radio" name="tired" value="1" id="tired_yes"><label for="tired_yes">Yes</label>
+                        <input type="radio" name="tired" value="0" id="tired_no"><label for="tired_no">No</label>
+                    </div>
+                    <div class="form-group">
+                        Do you have dry-cough : <br>
+                        <input type="radio" name="cough" value="1" id="cough_yes"><label for="cough_yes">Yes</label>
+                        <input type="radio" name="cough" value="0" id="cough_no"><label for="cough_no">No</label>
+                    </div>
+                    <div class="form-group">
+                        Difficulty in Breathing : <br>
+                        <input type="radio" name="diff_breathing" value="1" id="db_yes"><label for="db_yes">Yes</label>
+                        <input type="radio" name="diff_breathing" value="0" id="db_no"><label for="db_no">No</label>
+                    </div>
+                    <div class="form-group">
+                        Are you suffering from Sore-Throat : <br>
+                        <input type="radio" name="sore_throat" value="1" id="soreyes"><label for="soreyes">Yes</label>
+                        <input type="radio" name="sore_throat" value="0" id="soreno"><label for="soreno">No</label>
+                    </div>
+                    <div class="form-group">
+                        Do you have Pains in body : <br>
+                        <input type="radio" name="pains" value="1" id="painyes"><label for="painyes">Yes</label>
+                        <input type="radio" name="pains" value="0" id="painno"><label for="painno">No</label>
+                    </div>
+                    <div class="form-group">
+                        Having Nasal Congestion : <br>
+                        <input type="radio" name="nasal_congestion" value="1" id="ngyes"><label for="ngyes">Yes</label>
+                        <input type="radio" name="nasal_congestion" value="0" id="ngno"><label for="ngno">No</label>
+                    </div>
+                    <div class="form-group">
+                        Having Runny Nose : <br>
+                        <input type="radio" name="runny_nose" value="1" id="rnyes"><label for="rnyes">Yes</label>
+                        <input type="radio" name="runny_nose" value="0" id="rnno"><label for="rnno">No</label>
+                    </div>
+                    <div class="form-group">
+                        Are you suffering from Diarrhea : <br>
+                        <input type="radio" name="diarrhea" value="1" id="dyes"><label for="dyes">Yes</label>
+                        <input type="radio" name="diarrhea" value="0" id="dno"><label for="dno">No</label>
+                    </div>
+                    <div class="form-group">
+                        Select age-group : <br>
+                        <input type="radio" name="age" value="1" id="a1"><label for="a1">0 - 9 Years</label> <br>
+                        <input type="radio" name="age" value="2" id="a2"><label for="a2">10 - 19 Years</label> <br>
+                        <input type="radio" name="age" value="3" id="a3"><label for="a3">20 - 24 Years</label> <br>
+                        <input type="radio" name="age" value="4" id="a4"><label for="a4">25 - 59 Years</label> <br>
+                        <input type="radio" name="age" value="5" id="a5"><label for="a5">60 + Years</label>
+                    </div>
+                    <div class="form-group">
+                        Select Gender : <br>
+                        <input type="radio" name="gender" value="0" id="male"><label for="male">Male</label>
+                        <input type="radio" name="gender" value="1" id="female"><label for="female">Female</label>
+                        <input type="radio" name="gender" value="2" id="other"><label for="other">Other</label>
+                    </div>
+                    <div class="form-group">
+                        Select Severity or condition level : <br>
+                        <input type="radio" name="severity" value="1" id="s1"><label for="s1">Mild</label> <br>
+                        <input type="radio" name="severity" value="2" id="s2"><label for="s2">Moderate</label> <br>
+                        <input type="radio" name="severity" value="3" id="s3"><label for="s3">Severe</label> <br>
+                        <input type="radio" name="severity" value="4" id="s4"><label for="s4">None</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="CHECK" style='width:100px;text-align:center;'>
+                    </div>
+                </form>
+                <ul class="copyright">
+                    <li>&copy; copyright 2020 ( All rights reserved )</li>
+                </ul>
+            </div>
+        </section>
+
+
+
+    </div>
+
+    <script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+    <script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+    <script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+    <script src="{% static 'ml_app/js/util.js' %}"></script>
+    <script src="{% static 'ml_app/js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>ML Examples - Student Performance Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+        </style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>	
+								<li><a href="{% url 'index' %}">Feedback</a></li>					
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>STUDENT PERFORMANCE PREDICTION</h2>
+						</div>
+					</section>
+
+				<!-- OUTPUT display HERE -->
+				{% if flag == 1 %}
+					<div class="container alert badge-success text-center">Student Approximate performance will be {{y_hat}}% and above</div>
+				{% endif %}
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							<h2 class="major">FILL DETAILS</h2>
+							<form method="post" action="#">
+                                {% csrf_token %}
+								<div class="form-group">
+									Select Gender : <br>
+                                    <input type="radio" name="gender" value="1" id="male" required><label for="male">Male</label>
+                                    <input type="radio" name="gender" value='0' id="female" required><label for="female">Female</label>
+								</div>
+								<div class="form-group">
+									Enter Age :
+									<input type="number" name="age" id="age" class="form-control" >
+								</div>
+								<div class="form-group">
+									Select Address : <br>
+                                    <input type="radio" name="address" value="0" id="rural" required><label for="rural">Rural</label>
+                                    <input type="radio" name="address" value='1' id="urban" required><label for="urban">Urban</label>
+								</div>
+								<div class="form-group">
+									Family Size : <br>
+									<input type="radio" name="family_size" value="1" id="lt3" required><label for="lt3">Less than or equal to 3</label>
+                                    <input type="radio" name="family_size" value='0' id="gt3" required><label for="gt3">Greater than 3</label>
+								</div>
+								<div class="form-group">
+									Parent Status : <br>
+									<input type="radio" name="parent_status" value="1" id="t" required><label for="t">Live Together</label>
+                                    <input type="radio" name="parent_status" value='0' id="a" required><label for="a">Live Apart</label>
+								</div>
+								<div class="form-group">
+									Mother's Education : <br>
+									<input type="radio" name="mother_edu" value="0" id="0" required><label for="0">None</label><br>
+									<input type="radio" name="mother_edu" value='1' id="1" required><label for="1">Primary Education (upto 4th Grade)</label><br>
+									<input type="radio" name="mother_edu" value="2" id="2" required><label for="2">Primary Education (upto 9th Grade)</label><br>
+									<input type="radio" name="mother_edu" value='3' id="3" required><label for="3">Secondary Education</label><br>
+									<input type="radio" name="mother_edu" value="4" id="4" required><label for="4">Higher Education</label>
+								</div>
+								<div class="form-group">
+									Father's Education : <br>
+									<input type="radio" name="father_edu" value="0" id="fe0" required><label for="fe0">None</label><br>
+									<input type="radio" name="father_edu" value='1' id="fe1" required><label for="fe1">Primary Education (upto 4th Grade)</label><br>
+									<input type="radio" name="father_edu" value="2" id="fe2" required><label for="fe2">Primary Education (upto 9th Grade)</label><br>
+									<input type="radio" name="father_edu" value='3' id="fe3" required><label for="fe3">Secondary Education</label><br>
+									<input type="radio" name="father_edu" value="4" id="fe4" required><label for="fe4">Higher Education</label>
+								</div>
+								<div class="form-group">
+									Guardian : <br>
+									<input type="radio" name="guardian" value='1' id="g2" required><label for="g2">Mother</label>
+									<input type="radio" name="guardian" value="2" id="g3" required><label for="g3">Father</label>
+									<input type="radio" name="guardian" value="0" id="g1" required><label for="g1">Other</label>
+								</div>
+								<div class="form-group">
+									Home to School Travel-time : <br>
+									<input type="radio" name="travel_time" value="1" id="tt1" required><label for="tt1">Less than 15 min</label><br>
+									<input type="radio" name="travel_time" value='2' id="tt2" required><label for="tt2">15-30 min</label><br>
+									<input type="radio" name="travel_time" value="3" id="tt3" required><label for="tt3">30 min - 1 hour</label><br>
+									<input type="radio" name="travel_time" value='4' id="tt4" required><label for="tt4">More than 1 hour</label>
+								</div>
+								<div class="form-group">
+									Weekly Study Time : <br>
+									<input type="radio" name="study_time" value="1" id="st1" required><label for="st1">Less than 2 hours</label><br>
+									<input type="radio" name="study_time" value='2' id="st2" required><label for="st2">2 hours - 5 hours</label><br>
+									<input type="radio" name="study_time" value="3" id="st3" required><label for="st3">5 hours - 10 hours</label><br>
+									<input type="radio" name="study_time" value='4' id="st4" required><label for="st4">More than 10 hours</label>
+								</div>
+								<div class="form-group">
+									No. of Past class failures : <br>
+									<input type="radio" name="failures" value="0" id="f0" required><label for="f0">Never</label><br>
+									<input type="radio" name="failures" value='1' id="f1" required><label for="f1">1 Time</label><br>
+									<input type="radio" name="failures" value="2" id="f2" required><label for="f2">2 Times</label><br>
+									<input type="radio" name="failures" value='3' id="f3" required><label for="f3">3 Times or more</label>
+								</div>
+								<div class="form-group">
+									Extra Educational Support : <br>
+									<input type="radio" name="schoolsup" value="1" id="s1" required><label for="s1">Yes</label>
+									<input type="radio" name="schoolsup" value='0' id="s0" required><label for="s0">No</label>
+								</div>
+								<div class="form-group">
+									Family Educational Support : <br>
+                                    <input type="radio" name="famsup" value="1" id="e1" required><label for="e1">Yes</label>
+									<input type="radio" name="famsup" value='0' id="e0" required><label for="e0">No</label>
+								</div>
+								<div class="form-group">
+									Extra Paid Classes for Subjects : <br>
+									<input type="radio" name="paid" value="1" id="paid1" required><label for="paid1">Yes</label>
+									<input type="radio" name="paid" value='0' id="paid0" required><label for="paid0">No</label>
+								</div>
+								<div class="form-group">
+									Extra-Curricular Activities : <br>
+									<input type="radio" name="extra_curri" value="1" id="eca1" required><label for="eca1">Yes</label>
+									<input type="radio" name="extra_curri" value='0' id="eca0" required><label for="eca0">No</label>
+								</div>
+								<div class="form-group">
+									Attended Nursery School : <br>
+									<input type="radio" name="nursery" value="1" id="nur1" required><label for="nur1">Yes</label>
+									<input type="radio" name="nursery" value='0' id="nur0" required><label for="nur0">No</label>
+								</div>
+								<div class="form-group">
+									Internet Access at Home : <br>
+									<input type="radio" name="internet" value="1" id="net1" required><label for="net1">Yes</label>
+									<input type="radio" name="internet" value='0' id="net0" required><label for="net0">No</label>
+								</div>
+								<div class="form-group">
+									Quality of Family Relationships : <br>
+									<input type="radio" name="family_rel" value="1" id="fr1" required><label for="fr1">Rating 1 (Poor)</label><br>
+									<input type="radio" name="family_rel" value='2' id="fr2" required><label for="fr2">Rating 2 (Below Average)</label><br>
+									<input type="radio" name="family_rel" value="3" id="fr3" required><label for="fr3">Rating 3 (Average)</label><br>
+									<input type="radio" name="family_rel" value='4' id="fr4" required><label for="fr4">Rating 4 (Above Average)</label><br>
+									<input type="radio" name="family_rel" value="5" id="fr5" required><label for="fr5">Rating 5 (Good)</label>
+								</div>
+								<div class="form-group">
+									Going out with Friends : <br>
+								    <input type="radio" name="goout" value="1" id="go1" required><label for="go1">Rating 1 (Very Rare)</label><br>
+									<input type="radio" name="goout" value='2' id="go2" required><label for="go2">Rating 2 </label><br>
+									<input type="radio" name="goout" value="3" id="go3" required><label for="go3">Rating 3 </label><br>
+									<input type="radio" name="goout" value='4' id="go4" required><label for="go4">Rating 4 </label><br>
+									<input type="radio" name="goout" value="5" id="go5" required><label for="go5">Rating 5 (Very Frequent)</label>
+								</div>
+								<div class="form-group">
+									Health Status : <br>
+									<input type="radio" name="health" value="1" id="h1" required><label for="h1">Rating 1 (Poor)</label><br>
+									<input type="radio" name="health" value='2' id="h2" required><label for="h2">Rating 2 (Below Average)</label><br>
+									<input type="radio" name="health" value="3" id="h3" required><label for="h3">Rating 3 (Average)</label><br>
+									<input type="radio" name="health" value='4' id="h4" required><label for="h4">Rating 4 (Above Average)</label><br>
+									<input type="radio" name="health" value="5" id="h5" required><label for="h5">Rating 5 (Good)</label>
+								</div>
+								<div class="form-group">
+                                    <input type="submit" value="CHECK" style='width:100px;text-align:center;'>
+								</div>
+                            </form>
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+            
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

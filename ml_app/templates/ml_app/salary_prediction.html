@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Salary Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+        </style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>SALARY PREDICTION</h2>
+						</div>
+					</section>
+
+                    {% if flag == 1 %}
+                        <div class="container alert badge-success text-center">Salary is approximately {{y_hat}} Rs. per month</div>
+                    {% endif %}
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							<h2 class="major">FILL DETAILS</h2>
+							<form method="post" action="#">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    Enter Experience (in years) : <br>
+                                    <input type="number" name="experience" id="experience" class="form-control" required >
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="CHECK" style='width:100px;text-align:center;'>
+                                </div>
+                            </form>
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>

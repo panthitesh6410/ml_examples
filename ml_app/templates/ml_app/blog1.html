@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> ML Examples - Blog Posts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'ml_app/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'ml_app/css/main.css' %}" />
+        <style>
+            body{
+                font-family: verdana;
+            }
+			
+		</style>
+    </head>
+	<body>
+
+			<div id="page-wrapper">
+
+					<header id="header" class="alt">
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li><a href="{% url 'index' %}">Feedback</a></li>						
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+					<section id="banner">
+						<div class="inner">
+                            <h2>GETTING STARTED WITH MACHINE LEARNING</h2>
+						</div>
+					</section>
+
+					<section>
+						<div class="container">
+							<h2 class="sub-headings ml-3 text-secondary">Proper Definition of Machine-Learning</h2>
+							<br>
+							<div class="article ml-3">
+								<img width=400 src="{% static 'ml_app/images/ml2.jpg' %}" alt="" />
+									<br><br>
+								<p>
+									<i>
+										"Machine Learning is athe science/art of  programming computers so they can learn from data." 
+									</i>
+								</p>
+								<p><b>OR</b></p>
+								<br>
+								<p>
+									<i>
+										"Machine Learnging is a field of study that gives computers the ability to learn without being explicitly programmed."
+									</i>
+								</p>
+								<p><b>OR</b></p>
+								<p>
+									<i>
+										"A computer program is said to learn from experience(E) with respect to some task(T) ans some performance measure(P), if it's performance on task(T), as measured by performance(P), improves with experience(E)."
+									</i>
+								</p>
+								<hr>
+								<h2 class="sub-headings text-secondary">Examples & Applications </h2>
+								<br>
+								<p>
+									<br>
+									Machine Learning applications in day-to-day life :
+									<ul>
+										<li><b>Spam Detector</b></li>
+											A very common and simple example of Machine Learnging is the spam filter in e-mail that can learn to flag spam given examples of spam emails and examples of regular emails.
+										<br><br>
+										<li><b>Virtual Personal Assistamce </b></li>
+											Some popular virtual assitants are Siri, Alexa, Google Assitant.
+										<br><br>	
+										<li><b>Online Customer Support</b></li>
+											You might have seen many websites and applications now-a-days have a Chat-Bots that can work as virtual Customer support and and answer queries rapidly and precisely. 
+										<br><br>		
+										<li><b>Product Recommendation</b></li>
+											You might have seen product recommendations on Flipkart, Amazon, and other online shopping applications also netflix suggests you movies based on your search and intrests.
+										<br><br>
+										<li><b>Online Fraud Detection</b></li>
+											Machine Learnging helps to detect various online frauds like credit card frauds cases and many more. 
+										<br><br>
+										<li><b>Self Driving Cars</b></li>
+											Machine Learning also applied in automobile fields in autonomous cars or self driving cars. They can learn and make intelligent systems that helps cars to run independently. Popular example of self-driving car is Tesla's self driving car. 
+										<br><br>
+										<li><b>Video Surveillance</b></li>
+											Now-a-days video surveillance systems are very popular which helps to maintain good security checks. Machine Learning can be applied to detect various activities like checking two wheeler drivers without helmets.
+										<br><br>
+										<li><b>Image Recognition</b></li>
+											Machine Learning is applied in Image Recognition systems. Google Lens is a good example of image recognition that detects objects placed within camera.
+										<br><br>
+										<li><b>Stock Price Prediction</b></li>
+											Machine Learning can also help us to get insights and predict continuously changing stock prices. 
+										<br><br>
+										<li>Weather Prediction</li>
+											Weather prediction is one of the most popular application of machine learning. Based on historic weather data of climate conditions Machine Learning helps to preidct future weather conditions. 
+										<br><br>
+										<li><b>Medical Diagnosis of diseases</b></li>
+											Now-a-days medical science is also using Machine Learning to detect various diseases based on individual's symptoms. It also helps to make medicines of many diseases. For example, detectin weather a person is suffering from cancer or not based on tumor size, cell types , etc. <br> 
+										<br> and many more...
+									</ul> 
+								</p>
+								<hr>
+								<h2 class="sub-headings  text-secondary">Why Machine Learning ?</h2>
+								<br>
+								<ul>
+									<li>Complex problems for which there is no proper solution using traditional approaches, ML techniques can find a solution.</li>
+									<li>Getting insights about Complex problems and large amounts of data.</li>
+									<li>ML can adapt to new data and fluctuating enviornment</li>
+								</ul>
+								<hr>
+								<h2 class="sub-headings text-secondary">Types of Machine Learning</h2>
+								<br>
+								<p>There are mainly 3 types of Machine Learnging stategies - </p>
+								<img width=400 src="{% static 'ml_app/images/ml3.jpg' %}" alt="" />
+								<br><br>
+								<ol>
+									<li>Supervised Machine Learning</li>
+									<li>Unsupervised Machine Learning</li>
+									<li>Reinforcement Machine Learning</li>
+								</ol>
+								<hr>
+								<p><a href="{% url 'blog2' %}">Next Blog - <b><i>"SUPERVISED MACHINE LEARNING"</i></b></a></p>
+								<hr>
+								<!-- <p>MORE BLOGS - </p> -->
+							</div>
+						</div>
+					</section>
+
+                    <section id="footer">
+						<div class="inner" id="enquiry">
+							
+							<ul class="copyright">
+								<li>&copy; copyright 2020 ( All rights reserved )</li>
+							</ul>
+						</div>
+					</section>
+
+					
+                    
+			</div>
+
+			<script src="{% static 'ml_app/js/skel.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/jquery.min.js'%}"></script>
+			<script src="{% static 'ml_app/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ml_app/js/util.js' %}"></script>
+			<script src="{% static 'ml_app/js/main.js' %}"></script>
+
+	</body>
+</html>
