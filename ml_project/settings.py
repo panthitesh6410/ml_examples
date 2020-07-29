@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import django_heroku
 import os
-
+import dj_database_url
 # export DJANGO_DEBUG=False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -146,6 +146,6 @@ STATIC_URL = '/static/'
 # DISABLE_COLLECTSTATIC=1
 
 # Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
