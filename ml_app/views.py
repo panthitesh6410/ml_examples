@@ -276,10 +276,13 @@ def corona_prediction(request):
         elif severity == 4:
             none = 1
         data = pd.read_csv("ml_app/static/ml_app/csv/corona.csv")
+        print("data read sucess")
         df = data.drop(['Country', 'None_Experiencing', 'Contact_Dont-Know', 'Contact_No', 'Contact_Yes'], 1)
         kmeans = KMeans(n_clusters=2)
         kmeans.fit(df)
+        print("model fit sucess")
         y_hat = kmeans.predict([[fever, tired, cough, diff_breadthing, sore_throat, none_symptom, pains, nasal_congestion, runny_nose, diarrhea, age1, age2, age3, age4, age5, female, male, other, mild, moderate, none, severe]])
+        print("getting predictions sucessfully")
     return render(request, "ml_app/corona_prediction.html", {'yhat': y_hat[0]})
 
 def blog4(request):
