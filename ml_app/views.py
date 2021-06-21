@@ -9,6 +9,8 @@ from csv import writer
 from sklearn.neighbors import KNeighborsClassifier
 from django.shortcuts import render
 from . models import Enquiry
+import requests
+
 
 def index(request):
     flag = 0
@@ -211,15 +213,6 @@ def student_performance(request):
         result =  (y_hat[0]*100)/20
     return render(request, "ml_app/student_performance.html", {'flag': flag, "y_hat":result})
 
-def blog1(request):
-    return render(request, "ml_app/blog1.html")
-
-def blog2(request):
-    return render(request, "ml_app/blog2.html")
-
-def blog3(request):
-    return render(request, "ml_app/blog3.html")
-
 def corona_prediction(request):
     y_hat = np.empty(1)
     # y_hat = [-1]
@@ -284,6 +277,58 @@ def corona_prediction(request):
         y_hat = kmeans.predict([[fever, tired, cough, diff_breadthing, sore_throat, none_symptom, pains, nasal_congestion, runny_nose, diarrhea, age1, age2, age3, age4, age5, female, male, other, mild, moderate, none, severe]])
         print("getting predictions sucessfully")
     return render(request, "ml_app/corona_prediction.html", {'yhat': y_hat[0]})
+
+def stock_prediction(request):
+    symbols_df = pd.read_csv("ml_app/static/ml_app/csv/symbols.csv")
+    symbols_df = symbols_df.dropna(axis=0, how='any')
+    print(len(symbols_df['Symbol'].unique()))
+    symbols_list = symbols_df['Symbol'].unique()
+    print(symbols_list)
+    if request.method == "POST":
+        symbol = request.POST['symbols_list']
+        print(symbol)
+        ### GETTING DATA FROM API (JSON) TO DATAFRAME FORMAT :
+        url = "http://api.marketstack.com/v1/eod?access_key=17228550215e4f2859684c5584c60308&symbols={}&sort%20=%20DESC".format(symbol)
+        r = requests.get(url)
+        d = r.json()
+        data = d['data']
+        df = pd.DataFrame.from_dict(data)
+        # NORMALIZE THE FEATURES :
+        df['adj_close'] = df['adj_close']/df['adj_close'].max()
+        df['adj_high'] = df['adj_high']/df['adj_high'].max()
+        df['adj_low'] = df['adj_low']/df['adj_low'].max()
+        df['adj_open'] = df['adj_open']/df['adj_open'].max()
+        df['adj_volume'] = df['adj_volume']/df['adj_volume'].max()
+        df['close'] = df['close']/df['close'].max()
+        df['high'] = df['high']/df['high'].max()
+        df['low'] = df['low']/df['low'].max()
+        df['open'] = df['open']/df['open'].max()
+        df['volume'] = df['volume']/df['volume'].max()
+        # Handling data column :
+        df['date'] = pd.to_datetime(df['date'])     # coverting str object to datetime
+        # creating seperate columns for year, month, week, day :
+        df['year'] = df['date'].dt.year
+        df['month'] = df['date'].dt.month
+        df['week'] = df['date'].dt.week
+        df['day'] = df['date'].dt.day
+        df['year'] = df['year']/df['year'].max()
+        df['month'] = df['month']/df['month'].max()
+        df['week'] = df['week']/df['week'].max()
+        df['day'] = df['day']/df['day'].max()
+        final_df = df[['adj_close','adj_high', 'adj_low', 'adj_open', 'adj_volume', 'close', 'high', 'low', 'open', 'volume', 'year', 'month', 'week', 'day']]
+        final_df.head()
+
+    final_dict = {'symbols_list':symbols_list} 
+    return render(request, "ml_app/stock_prediction.html", final_dict)
+
+def blog1(request):
+    return render(request, "ml_app/blog1.html")
+
+def blog2(request):
+    return render(request, "ml_app/blog2.html")
+
+def blog3(request):
+    return render(request, "ml_app/blog3.html")
 
 def blog4(request):
     return render(request, "ml_app/blog4.html")
