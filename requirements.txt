@@ -10,7 +10,7 @@ idna==2.10
 joblib==0.15.1
 kiwisolver==1.2.0
 matplotlib==3.2.2
-numpy==1.19.0
+numpy==1.22.0
 pandas==1.0.5
 psycopg2==2.8.5
 pyparsing==2.4.7
